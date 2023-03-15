@@ -4,7 +4,7 @@ import Counter from './modules/Counter/Counter';
 import GenreSelect from './modules/GenreSelect/GenreSelect';
 import SearchForm from './modules/SearchForm/SearchForm';
 
-import './index.css';
+import './styles/index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
