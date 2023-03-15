@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Counter from './components/Counter';
-import GenreSelect from './components/GenreSelect';
-import SearchForm from './components/SearchForm';
+import Counter from './modules/Counter/Counter';
+import GenreSelect from './modules/GenreSelect/GenreSelect';
+import SearchForm from './modules/SearchForm/SearchForm';
 
 import './index.css';
-
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

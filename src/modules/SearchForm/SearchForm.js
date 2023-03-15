@@ -1,10 +1,11 @@
 import React from "react";
+import { search } from '../../utils/search'
 
 class SearchForm extends React.Component {
   constructor(props) {
     super(props)
     this.initialValue = this.props.initialValue;
-    this.onSearch = this.props.onSearch;
+    this.onSearch = search;
     this.state = {value: this.props.value || ''}
   }
 
@@ -13,13 +14,13 @@ class SearchForm extends React.Component {
   }
 
   handleOnSubmit = (e) => {
-    this.onSearch(e.target.value)
+    this.onSearch(e.target.value);
   }
 
   handlePressEnter = (e) => {
     if (e.key === 'Enter') {
+      this.onSearch(e.target.value);
       e.preventDefault();
-      this.onSearch(e.target.value)
     }
   }
 
