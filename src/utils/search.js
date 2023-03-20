@@ -12,5 +12,6 @@ export const search = (option) => {
       }
     });
   })
+
   return searchResult;
 }
