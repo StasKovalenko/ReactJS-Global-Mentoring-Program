@@ -1,9 +1,10 @@
 import React from "react";
+import Button from "../Button/Button";
 
 class Counter extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value : props.value || 0 };
+    this.state = { value : props.initialValue || 0 };
   }
 
   handleDecrement = () => {
@@ -19,13 +20,15 @@ class Counter extends React.Component {
   }
 
   render () {
-    return React.createElement(
-      'div',
-      { className: 'counter_container' },
-        React.createElement('h1', null, 'Counter component'),
-        React.createElement('button', { className: 'btn', onClick: this.handleDecrement, } , 'Decrement'),
-        React.createElement('span', { className: 'count_value' }, `${this.state.value}`),
-        React.createElement('button', { className: 'btn' , onClick: this.handleIncrement }, 'Increment'),
+    return (
+      <>
+      <div className="counter_container">
+        <h1>Counter component</h1>
+        <Button btnText={'Decrement'} btnEvent={this.handleDecrement} dataCy={'decrement'}/>
+        <span className="count_value">{this.state.value}</span>
+        <Button btnText={'Increment'} btnEvent={this.handleIncrement} dataCy={'increment'}/>
+      </div>
+      </>
     )
   }
 }

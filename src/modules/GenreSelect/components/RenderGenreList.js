@@ -5,7 +5,7 @@ const RenderGenreList = (props) => {
   const { onSelect } = props;
   return (
     <ul className="genreList">
-      <RenderGenderItem onSelect={onSelect}/>
+      <RenderGenderItem onSelect={onSelect} genres={props.genres}/>
     </ul>
   )
 }

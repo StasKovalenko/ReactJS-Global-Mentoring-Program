@@ -1,25 +1,30 @@
 import React, {useState} from "react";
-import { search } from '../../../utils/search'
+import { filter } from "../../../utils/filter";
 
 const genresList = ['all', 'Documentary', 'Comedy', 'Horror', 'crime']
 
-const RenderGenreItem = () => {
+const RenderGenreItem = (props) => {
   const [selectedGenreName, setSeletedGenreName] = useState(null);
+
+  const { genres } = props;
+  const checkedGenresList = genres ? genres : genresList;
 
   const handleSelected = (e) => {
     setSeletedGenreName(+e.target.dataset.index)
-    search(e.target.innerText);
+    filter(e.target.dataset.value);
   }
 
   return (
-    genresList.map((item, index) => {
+    checkedGenresList.map((item, index) => {
       return (
         <li className="genreListItem" key={item}>
           <button 
             type="button"
             className={`genreListItem_Button ${index === selectedGenreName ? 'active' : ''}`}
             onClick={handleSelected}
-            data-index={index}>
+            data-value={item}
+            data-index={index}
+            date-testid={item}>
               {item}
           </button>
         </li>
