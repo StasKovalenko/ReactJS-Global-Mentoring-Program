@@ -1,3 +1,4 @@
+/* eslint-disable cypress/no-assigning-return-values */
 import React from 'react'
 import Counter from '../../src/modules/Counter/Counter'
 

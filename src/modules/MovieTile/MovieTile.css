@@ -1,0 +1,40 @@
+.movieTile {
+  flex-direction: column;
+  margin: 0 0 2rem;
+  position: relative;
+}
+
+.movieTile:hover {
+  opacity: .5;
+}
+
+.movieLogo_img {
+  width: auto;
+  height: 510px;
+}
+
+.movieDetails {
+  font-size: 18px;
+  font-weight: 500;
+}
+.movieDetailsInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  opacity: .7;
+  margin: 1rem 0;
+}
+
+.movieReleaseDate{
+  font-size: 14px;
+  border: 1px solid #979797;
+  padding: 6px;
+  border-radius: 4px;
+  margin: 0 0 0 1rem;
+}
+
+.movieGenres {
+  opacity: .5;
+  text-align: left;
+  font-size: 14px;
+}

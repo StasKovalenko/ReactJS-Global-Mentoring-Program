@@ -1,0 +1,25 @@
+.genreList {
+  display: flex;
+}
+
+.genreListItem {
+  list-style: none;
+  margin-right: 1rem;
+}
+
+.genreListItem_Button {
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  padding: 0;
+  color: #FFFFFF;
+  font-size: 16px;
+}
+
+.genreListItem_Button:hover {
+  opacity: 0.4;
+}
+
+.active {
+  color: #F65261;
+}

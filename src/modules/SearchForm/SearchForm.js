@@ -31,33 +31,30 @@ class SearchForm extends React.Component {
 
   render () {
     return (
-      <>
-        <div className="searchForm_container">
-          <h1 className="searchForm_title">Find your movie</h1>
-          <div className="form_container">
-            <form className="form">
-              <label>
-                <input 
-                  type= "text"
-                  value={this.state.value}
-                  placeholder={'What do you want to watch?'}
-                  className="search_input"
-                  data-testid="search_input"
-                  onChange={this.handleOnChange}
-                  onFocus={this.handleOnSubmit}
-                  onKeyDown={this.handlePressEnter}
-                />
-              </label>
-              <Button 
-                type={'button'}
-                className="btn"
-                btnEvent={this.handleOnClick}
-                btnText={'Search'}
+      <div className="searchForm_container">
+        <h1 className="searchForm_title">Find your movie</h1>
+        <div className="form_container">
+          <form className="form">
+            <label>
+              <input 
+                type= "text"
+                value={this.state.value}
+                placeholder={'What do you want to watch?'}
+                className="search_input"
+                data-testid="search_input"
+                onChange={this.handleOnChange}
+                onFocus={this.handleOnSubmit}
+                onKeyDown={this.handlePressEnter}
               />
-            </form>
-          </div>
+            </label>
+            <Button 
+              type={'button'}
+              onClick={this.handleOnClick}
+              btntext={'Search'}
+            />
+          </form>
         </div>
-      </>
+      </div>
     )
   }
 }

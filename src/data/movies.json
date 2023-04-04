@@ -329,25 +329,6 @@
       "runtime": 115
   },
   {
-      "id": 353486,
-      "title": "Jumanji: Welcome to the Jungle",
-      "tagline": "The game has evolved.",
-      "vote_average": 6.5,
-      "vote_count": 3330,
-      "release_date": "2017-12-09",
-      "poster_path": "https://image.tmdb.org/t/p/w500/bXrZ5iHBEjH7WMidbUDQ0U2xbmr.jpg",
-      "overview": "The tables are turned as four teenagers are sucked into Jumanji's world - pitted against rhinos, black mambas and an endless variety of jungle traps and puzzles. To survive, they'll play as characters from the game.",
-      "budget": 90000000,
-      "revenue": 928901353,
-      "genres": [
-          "Action",
-          "Adventure",
-          "Comedy",
-          "Family"
-      ],
-      "runtime": 119
-  },
-  {
       "id": 245891,
       "title": "John Wick",
       "tagline": "Don't set him off.",

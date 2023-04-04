@@ -1,3 +1,9 @@
+/* eslint-disable no-undef */
 module.exports = {
-  testEnvironment: 'jsdom'
+  verbose: true,
+  testEnvironment: 'jsdom',
+  transform: {
+    '^.+\\.css$': 'jest-transform-stub',
+    '^.+\\.js$': 'babel-jest',
+  },
 }
