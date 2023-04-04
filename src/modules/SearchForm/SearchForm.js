@@ -1,5 +1,6 @@
 import React from "react";
 import { search } from '../../utils/search'
+import Button from "../Button/Button";
 
 class SearchForm extends React.Component {
   constructor(props) {
@@ -15,6 +16,10 @@ class SearchForm extends React.Component {
 
   handleOnSubmit = (e) => {
     this.onSearch(e.target.value);
+  }
+
+  handleOnClick = () => {
+    this.onSearch(this.state.value);
   }
 
   handlePressEnter = (e) => {
@@ -37,12 +42,18 @@ class SearchForm extends React.Component {
                   value={this.state.value}
                   placeholder={'What do you want to watch?'}
                   className="search_input"
+                  data-testid="search_input"
                   onChange={this.handleOnChange}
                   onFocus={this.handleOnSubmit}
                   onKeyDown={this.handlePressEnter}
                 />
               </label>
-              <button type='button' className="btn search_btn" onClick={this.handleOnSubmit}>Search</button>
+              <Button 
+                type={'button'}
+                className="btn"
+                btnEvent={this.handleOnClick}
+                btnText={'Search'}
+              />
             </form>
           </div>
         </div>

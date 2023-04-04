@@ -6,7 +6,7 @@ export const search = (option) => {
     if (option.toLowerCase() === 'all') {
       return searchResult.push(item);
     }
-    item.genres.forEach(el => {
+    return item.genres.forEach(el => {
       if(el.toLowerCase()===option.toLowerCase()){
         return searchResult.push(item);
       }

@@ -9,11 +9,19 @@
   margin: 0 1rem;
   padding: .5rem;
   text-transform: uppercase;
-  color: #fff;
-  background: #F65261;
-  border: none;
   padding: 1rem 2rem;
   border-radius: 11px;
+}
+
+.primary_btn {
+  color: #fff;
+  border: none;
+  background: #F65261;
+}
+
+.secondary_btn{
+  color: #F65261;
+  border: 1px solid #F65261;
 }
 
 .btn:hover {
