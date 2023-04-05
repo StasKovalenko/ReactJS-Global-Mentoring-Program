@@ -1,12 +1,12 @@
 import React from "react";
-import { search } from '../../utils/search'
+import { searchGenres } from '../../utils/searchGenres'
 import Button from "../Button/Button";
 
 class SearchForm extends React.Component {
   constructor(props) {
     super(props)
     this.initialValue = this.props.initialValue;
-    this.onSearch = search;
+    this.onSearch = searchGenres;
     this.state = {value: this.props.value || ''}
   }
 
@@ -32,21 +32,21 @@ class SearchForm extends React.Component {
   render () {
     return (
       <div className="searchForm_container">
-        <h1 className="searchForm_title">Find your movie</h1>
         <div className="form_container">
+          
           <form className="form">
-            <label>
-              <input 
-                type= "text"
-                value={this.state.value}
-                placeholder={'What do you want to watch?'}
-                className="search_input"
-                data-testid="search_input"
-                onChange={this.handleOnChange}
-                onFocus={this.handleOnSubmit}
-                onKeyDown={this.handlePressEnter}
-              />
-            </label>
+            <label className="form_title" htmlFor="search_input">Find your movie</label><br/>
+            <input
+              id="search_input"
+              type= "text"
+              value={this.state.value}
+              placeholder={'What do you want to watch?'}
+              className="search_input"
+              data-testid="search_input"
+              onChange={this.handleOnChange}
+              onFocus={this.handleOnSubmit}
+              onKeyDown={this.handlePressEnter}
+            />
             <Button 
               type={'button'}
               onClick={this.handleOnClick}

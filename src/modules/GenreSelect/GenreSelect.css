@@ -1,3 +1,10 @@
+.filterSectionContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+}
+
 .genreList {
   display: flex;
 }
@@ -14,6 +21,7 @@
   padding: 0;
   color: #FFFFFF;
   font-size: 16px;
+  font-weight: 500;
 }
 
 .genreListItem_Button:hover {

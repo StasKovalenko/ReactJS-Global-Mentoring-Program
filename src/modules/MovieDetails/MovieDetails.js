@@ -1,39 +1,38 @@
 import React from "react";
+import  { convertGenres, convertDate, convertDuration } from "../../utils/helpers";
+import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 
 import './MovieDetails.css'
 
 const MovieDetails = (props) => {
   const {
-    poster_path,
-    title,
-    release_date,
-    genres,
-    vote_average,
+    movie,
   } = props;
 
   return (
-    <div className="movieDetailsContainer">
-      2312
-      <div className="movieDetailLogoWrap">
-        <div className="movieDetailLogo">
-          <img className="movieDetailLogoImg" src={poster_path} alt="movieDetailLogoImg"/>
+    <ErrorBoundary>
+      <div className="movieDetailsContainer">
+        <div className="movieDetailLogoWrap">
+          <div className="movieDetailLogo">
+            <img className="movieDetailLogoImg" src={movie?.poster_path} alt="movieDetailLogoImg"/>
+          </div>
+        </div>
+        <div className="movieDetailInfoWrap">
+          <div className="movieDetailInfo">
+            <h2 className="movieDetailInfoTitle">{movie?.title}</h2>
+            <div className="movieDetailInfoVote">{movie?.vote_average}</div>
+          </div>
+          <div className="movieDetailInfoGenres">{convertGenres(movie?.genres)}</div>
+          <div className="movieDetailInfoTime">
+            <div className="movieDetailRealeseDate">{convertDate(movie?.release_date)}</div>
+            <div className="movieDetailInfoRunTime">{convertDuration(movie?.runtime)}</div>
+          </div>
+          <div className="movieDetailInfoContent">
+            <p className="movieDetailInfoOverview">{movie?.overview}</p>
+          </div>
         </div>
       </div>
-      <div className="movieDetailInfoWrap">
-        <div className="movieDetailInfo">
-          <div className="movieDetailInfoTitle">{title}</div>
-          <div className="movieDetailInfoVote">{vote_average}</div>
-        </div>
-        <div className="movieDetailInfoGenres">{genres}</div>
-        <div className="movieDetailInfoTime">
-          <div className="movieDetailRealeseDate">{release_date}</div>
-          <div className="movieDetailInfoRunTime"></div>
-        </div>
-        <div className="movieDetailInfoOverview">
-          <p className="movieDetailInfoContent"></p>
-        </div>
-      </div>
-    </div>
+    </ErrorBoundary>
   )
 
 }

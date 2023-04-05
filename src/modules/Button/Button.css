@@ -4,6 +4,9 @@
   border-radius: 4px;
   width: 180px;
   height: 57px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24.38px;
 }
 
 .primary_btn {

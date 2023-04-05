@@ -4,7 +4,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import GenreSelect from '../GenreSelect/GenreSelect';
 
 import './MainPage.css'
-
+import SortControl from "../SortControl/SortControl";
 
 const MainPage = () => {
   return (
@@ -15,13 +15,15 @@ const MainPage = () => {
           <SearchForm />
         </div>
         <div className="main">
-          <div className="filterSectionContainer">
-            <div className="filterBy">
-              <GenreSelect />
-            </div>
-            <div className="sortBy"></div>
-          </div>
           <div className="moviesSection">
+            <div className="filterSectionContainer">
+              <div className="filterBy">
+                <GenreSelect />
+              </div>
+              <div className="sortBy">
+                <SortControl />
+              </div>
+            </div>
             <MovieTilesList />
           </div>
         </div>

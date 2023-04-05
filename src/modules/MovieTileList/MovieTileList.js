@@ -1,28 +1,41 @@
-import React from "react";
+import React, {useState} from "react";
 import MovieTile from "../MovieTile/MovieTile";
-import data from '../../data/movies.json'
+import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
+import data from '../../data/movies.json';
 
 import './MovieTileList.css'
-import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
+import MovieDetails from "../MovieDetails/MovieDetails";
 
 const MovieTilesList = () => {
-  const maxMovies = 27;
+  const [isMovieDetailShowed, setIsMovieDetailShowed] = useState(null);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+
+  const maxMovies =35;
+
+  const handleOnClick = (movie) => {
+    setSelectedMovie(movie)
+    setIsMovieDetailShowed(true)
+  }
+
+  const renderMovieItems = () => {
+    return (
+      data.map((movie, index) => {
+        return (
+          <MovieTile
+            key={index}
+            handleOnClick={handleOnClick}
+            movie={movie}
+          />
+        )
+      }).slice(0, maxMovies)
+    )
+  }
 
   return (
     <ErrorBoundary>
+      {isMovieDetailShowed ? <MovieDetails movie={selectedMovie}/> : null}
       <ul className="moviesContainer">
-        {data.map((movie, index) => {
-          return (
-              <MovieTile
-                key={index}
-                poster_path={movie.poster_path}
-                title={movie.title}
-                release_date={movie.release_date}
-                genres={movie.genres}
-              />
-            )
-          }).slice(0, maxMovies)
-        }
+        {renderMovieItems()}
       </ul>
     </ErrorBoundary>
   )

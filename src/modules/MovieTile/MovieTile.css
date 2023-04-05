@@ -6,23 +6,31 @@
 
 .movieTile:hover {
   opacity: .5;
+  cursor: pointer;
 }
 
 .movieLogo_img {
   width: auto;
-  height: 510px;
+  height: 424px;
 }
 
 .movieDetails {
   font-size: 18px;
   font-weight: 500;
 }
+
 .movieDetailsInfo {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  opacity: .7;
   margin: 1rem 0;
+}
+
+.movieTitle {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 17.07px;
+  opacity: .7;
 }
 
 .movieReleaseDate{
@@ -31,10 +39,15 @@
   padding: 6px;
   border-radius: 4px;
   margin: 0 0 0 1rem;
+  font-weight: 500;
+  line-height: 17px;
+  opacity: 0.7;
 }
 
 .movieGenres {
   opacity: .5;
   text-align: left;
   font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
 }

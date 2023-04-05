@@ -9,24 +9,19 @@
   justify-content: center;
 }
 
-.searchForm_title {
+.form_title {
   text-transform: uppercase;
-  margin: 2rem;
-  text-align: left;
-  width: 40%;
   color:#fff;
   position: absolute;
-  top: 7rem;
+  top: -2rem;
   z-index: 2;
+  font-weight: 300;
+  left: 0rem;
+  font-size: 40px;
+  line-height: 48.76px;
 }
 
 .form {
-  display: flex;
-  justify-content: flex-end;
-  
-  border: none;
-  padding: 0;
-  margin: 0 0 2rem;
   position: absolute;
   top: 12rem;
   z-index: 2;
@@ -35,10 +30,12 @@
 .search_input {
   border: none;
   border-radius: 10px;
-  font-size: 24px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24.38px;
   background: rgba(50, 50, 50, 1);
   width: 30rem;
-  padding: 0 0 0 1rem;
+  padding: 1rem;
   min-height: 100%;
   color:#fff;
 }

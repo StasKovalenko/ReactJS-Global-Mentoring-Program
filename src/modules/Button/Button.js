@@ -5,7 +5,7 @@ import './Button.css';
 const Button = (props) => {
   const { 
     btntext,
-    btnStyle,
+    btnstyle,
     onClick,
     type,
     dataCy,
@@ -13,7 +13,7 @@ const Button = (props) => {
     index,
   } = props;
 
-  const checkBtnStyle = btnStyle ? 'secondary_btn' : 'primary_btn';
+  const checkBtnStyle = btnstyle ? 'secondary_btn' : 'primary_btn';
   const checkBtnTestId = item ? item : 'btn'
 
   return (

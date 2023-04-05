@@ -11,8 +11,10 @@ export default {
 
 const Template = (args) => <RenderGenreList {...args} />;
 
-export const NotSelected = Template.bind({});
-NotSelected.args = {
+export const CustomGenres = Template.bind({});
+CustomGenres.args = {
+  genres: ["all", "Cartoon", "Documental", "Sitcom", "Historical"],
+  active: 'active',
 };
 
 export const AllSelected = Template.bind({});

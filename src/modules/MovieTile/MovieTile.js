@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 import MovieEditAndDelete from "../MovieEditAndDelete/MovieEditAndDelete";
-// import MovieDetails from "../MovieDetails/MovieDetails";
+import  { convertGenres, convertDate } from "../../utils/helpers";
 
 import './MovieTile.css';
 
@@ -8,26 +8,10 @@ const MovieTile = (props) => {
   const [isImgLoaded, setIsImgLoaded] = useState(true);
   const [toShowEditBtn, setToShowEditBtn] = useState(false);
 
-
-  const {
-    poster_path,
-    title,
-    release_date,
-    genres
-  } = props;
-
-  const dateFormat = (release_date) => release_date.slice(0, -6);
-
-  const genresAddSpace = (genresArr) => { 
-    return genresArr.slice(0, -1).join(", ") + ", " + genresArr[genresArr.length - 1]
-  } 
+  const { movie, handleOnClick } = props;
 
   const handleOnError = () => {
     setIsImgLoaded(false);
-  }
-
-  const handleOnClick = () => {
-     
   }
 
   const handleOnFocus = () => {
@@ -38,26 +22,31 @@ const MovieTile = (props) => {
     setToShowEditBtn(false);
   }
 
+  const handleClick = () => {
+    handleOnClick(movie)
+  }
+
+
   return (
     <li 
       className="movieTile"
       id="movieTile"
       style={{display: isImgLoaded? "flex" : "none"}}
-      onClick={handleOnClick} 
+      onClick={handleClick} 
       onMouseEnter={handleOnFocus}
       onMouseLeave={handleOutFocus}
     >
       <MovieEditAndDelete toShowEditBtn={toShowEditBtn}/>
       <div className="movieLogo">
-        <img className="movieLogo_img" src={poster_path} alt="Movie img" onError={handleOnError}/>
+        <img className="movieLogo_img" src={movie?.poster_path} alt="Movie img" onError={handleOnError}/>
       </div>
       <div className="movieDetails">
         <div className="movieDetailsInfo">
-          <h2 className="movieTitle">{title}</h2>
-          <div className="movieReleaseDate">{dateFormat(release_date)}</div>
+          <h2 className="movieTitle">{movie?.title}</h2>
+          <div className="movieReleaseDate">{convertDate(movie?.release_date)}</div>
         </div>
         <div className="movieGenres">
-          <div className="movieGenresList">{genresAddSpace(genres)}</div>
+          <div className="movieGenresList">{convertGenres(movie?.genres)}</div>
         </div>
       </div>
     </li>
