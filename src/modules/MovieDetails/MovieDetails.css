@@ -1,7 +1,7 @@
 .movieDetailsContainer {
   background-color: #232323;
   display: flex;
-  position: absolute;
+  position: fixed;
   top: 0;
   z-index: 5;
   left: 0;

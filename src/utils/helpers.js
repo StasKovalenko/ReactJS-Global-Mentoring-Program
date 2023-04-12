@@ -2,6 +2,9 @@ export const convertGenres = (genresArr) => {
   if (!genresArr) {
     return [];
   }
+  if (genresArr.length <=1) {
+    return genresArr;
+  }
   return genresArr.slice(0, -1).join(", ") + ", " + genresArr[genresArr.length - 1]
 }
 

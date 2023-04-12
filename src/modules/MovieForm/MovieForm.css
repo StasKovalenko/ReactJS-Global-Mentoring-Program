@@ -1,0 +1,170 @@
+.dialog-content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  background-color: #232323;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1), 0px 2px 10px rgba(0, 0, 0, 0.07), 0px 10px 20px rgba(0, 0, 0, 0.05), 0px 10px 50px rgba(0, 0, 0, 0.05);
+}
+
+.dialogCloseBtn {
+  position: absolute;
+  right: 1.3rem;
+  top: .7rem;
+  cursor: pointer;
+  background-color: inherit;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+}
+
+.dialogCloseBtn:hover {
+  color: #F65261;
+}
+
+.dialog-title {
+  margin: 3rem 0 1rem 3rem;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 300;
+  font-size: 40px;
+  line-height: 49px;
+}
+
+.modalMovieContainer {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  margin: 0 3rem;
+  grid-column-gap: 2rem;
+}
+
+.titleWrap, .dateWrap, .emailWrap, .ratingeWrap, .runtimeWrap, .textareaWrap, .genresWrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.deleteModalWrap{
+  width: 100%;
+}
+
+.modalMovieContainer label, .textareaWrap label {
+  color: #F65261;
+  text-transform: uppercase;
+  font-size: 16px;
+  line-height: 17px;
+  font-weight: 600;
+}
+
+.genresWrapUnderLineText {
+  color: #F65261;
+  font-weight: 300;
+  margin: -0.7rem 0 1rem;
+}
+
+.modalMovieContainer input{
+  margin: 1rem 0;
+  height: 2rem;
+  font-size: 20px;
+  line-height: 24px;
+  color: #FFFFFF;
+  background-color: rgba(50, 50, 50, 0.948044);
+  border: none;
+  padding: 1rem;
+}
+
+.genresWrap {
+  position: relative;
+}
+
+.genresDropDown {
+  margin: 1rem 0;
+  background-color: rgba(50, 50, 50, 0.948044);
+}
+.rmsc .dropdown-container {
+  background-color: inherit;
+  border: rgba(50, 50, 50, 0.948044);
+}
+
+.rmsc {
+  color: #fff;
+  --rmsc-selected: none;
+  --rmsc-hover: #F65261;
+}
+
+.dropdown-container .dropdown-content {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-container .dropdown-content div {
+  background-color: rgba(50, 50, 50, 0.948044);
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.textareaWrap {
+  margin: 0 0 6rem 0;
+  width: 210%;
+}
+.item-renderer {
+  padding: 0 0 0 1rem;
+}
+
+
+.item-renderer span {
+  color: #fff;
+  text-transform: none;
+}
+
+.rmsc .options {
+  width: 100%;
+}
+
+.rmsc .select-item {
+  padding: 0;
+}
+
+.rmsc .dropdown-content .panel-content {
+  background: none;
+}
+
+
+#ovirview{
+  margin: 1rem 0;
+  padding: 1rem;
+  font-size: 20px;
+  line-height: 24px;
+  color: #FFFFFF;
+  border: none;
+  resize: none;
+  background-color: rgba(50, 50, 50, 0.948044);
+}
+.btnContainer{
+  position: absolute;
+  right: 1rem;
+  bottom: 2rem;
+}
+
+.deleteDialogContent {
+  width: 70%;
+  height: 352px;
+  top: 35%;
+}
+
+.modalDeleteContent {
+  color: #fff;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  margin-left: 3rem;
+}
+
+.modalDeleteBtnWrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin: 3rem 3rem 0 0;
+}
