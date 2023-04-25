@@ -1,30 +1,30 @@
 import React from "react";
-import { searchGenres } from '../../utils/searchGenres'
 import Button from "../Button/Button";
 
 class SearchForm extends React.Component {
   constructor(props) {
     super(props)
     this.initialValue = this.props.initialValue;
-    this.onSearch = searchGenres;
+    this.setSearchQuery = this.props.setSearchQuery;
     this.state = {value: this.props.value || ''}
   }
 
   handleOnChange = (e) => {
     this.setState({ value: e.target.value})
+    this.setSearchQuery(e.target.value);
   }
 
   handleOnSubmit = (e) => {
-    this.onSearch(e.target.value);
+    this.setSearchQuery(e.target.value);
   }
 
   handleOnClick = () => {
-    this.onSearch(this.state.value);
+    this.setSearchQuery(this.state.value);
   }
 
   handlePressEnter = (e) => {
     if (e.key === 'Enter') {
-      this.onSearch(e.target.value);
+      this.setSearchQuery(e.target.value);
       e.preventDefault();
     }
   }
@@ -33,7 +33,6 @@ class SearchForm extends React.Component {
     return (
       <div className="searchForm_container">
         <div className="form_container">
-          
           <form className="form">
             <label className="form_title" htmlFor="search_input">Find your movie</label><br/>
             <input

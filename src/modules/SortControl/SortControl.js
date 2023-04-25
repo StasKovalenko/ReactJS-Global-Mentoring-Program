@@ -3,13 +3,13 @@ import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 
 import "./SortControl.css"
 
-const SortControl = () => {
-  const [selectedValue, setSelectedValue] = useState('Release Date');
+const SortControl = (props) => {
   const [isDropDownShowed, setIsDropDownShowed] = useState(false);
 
-  const handleSortByChange = (e) => {
-    const selectedSortBy = e.target.value;
-    setSelectedValue(selectedSortBy);
+  const { sortCriterion, setSortCriterion } = props;
+
+  const handleSortByClick = (e) => {
+    setSortCriterion(e.target.value);
   }
 
   const renderSortByDropDown = () => {
@@ -17,13 +17,25 @@ const SortControl = () => {
       <div className="sortByValue" onClick={() => setIsDropDownShowed(!isDropDownShowed)}>
         {!isDropDownShowed&&
           <div className="sortByOptions">
-            <button type="button" className="sortByBtn">{selectedValue}</button>
+            <button type="button" data-testid="sortByBtn" className="sortByBtn">{sortCriterion ? sortCriterion : 'Release date'}</button>
           </div>
         }
         {isDropDownShowed &&
           <div className="sortByOptionsDropDown">
-            <button type="button" className="sortBydropDownBtn" value="Release Date" onClick={handleSortByChange}>Release Date</button>
-            <button type="button" className="sortBydropDownBtn" value="Title" onClick={handleSortByChange}>Title</button>
+            <button type="button" 
+              className="sortBydropDownBtn" 
+              value="release_date"
+              data-testid="release"
+              onClick={handleSortByClick}>
+                Release Date
+            </button>
+            <button type="button" 
+              className="sortBydropDownBtn" 
+              value="title"
+              data-testid="title"
+              onClick={handleSortByClick}>
+                Title
+            </button>
           </div>
         }
       </div>
@@ -35,7 +47,7 @@ const SortControl = () => {
       <div className="sortControlContainer">
         <p className="sortByLabel">sort by</p>
         {renderSortByDropDown()}
-        <button type="submit" className={isDropDownShowed? "sortByFillBtnUp" : "sortByFillBtnDown"}></button>
+        <button type="submit" data-testid="fill" className={isDropDownShowed? "sortByFillBtnUp" : "sortByFillBtnDown"}></button>
       </div>
     </ErrorBoundary>
   )
