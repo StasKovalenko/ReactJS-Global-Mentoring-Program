@@ -1,6 +1,6 @@
 import data from '../data/movies.json'
 
-export const search = (option) => {
+export const searchGenres = (option) => {
   let searchResult = [];
   data.filter((item) => {
     if (option.toLowerCase() === 'all') {

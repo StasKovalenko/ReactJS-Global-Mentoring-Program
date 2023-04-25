@@ -4,6 +4,7 @@ import Button from "../Button/Button";
 class Counter extends React.Component {
   constructor(props) {
     super(props);
+    this.btnstyle = props.btnstyle;
     this.state = { value : props.initialValue || 0 };
   }
 
@@ -24,9 +25,9 @@ class Counter extends React.Component {
       <>
       <div className="counter_container">
         <h1>Counter component</h1>
-        <Button btnText={'Decrement'} btnEvent={this.handleDecrement} dataCy={'decrement'}/>
+        <Button btntext={'Decrement'} onClick={this.handleDecrement} datacy={'decrement'} btnstyle={this.btnstyle}/>
         <span className="count_value">{this.state.value}</span>
-        <Button btnText={'Increment'} btnEvent={this.handleIncrement} dataCy={'increment'}/>
+        <Button btntext={'Increment'} onClick={this.handleIncrement} datacy={'increment'} btnstyle={this.btnstyle}/>
       </div>
       </>
     )

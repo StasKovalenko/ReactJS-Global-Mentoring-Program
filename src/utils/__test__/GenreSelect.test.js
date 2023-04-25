@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent, screen } from '@testing-library/react';
 import GenreSelect from "../../modules/GenreSelect/GenreSelect";
-import RenderGenreItem from "../../modules/GenreSelect/components/RenderGenreItem";
+import RenderGenreList from "../../modules/GenreSelect/components/RenderGenreList";
 import { filter } from "../filter";
 
 jest.mock('../filter');
@@ -25,7 +25,7 @@ describe('Genre Select', () => {
   });
 
   it('Test that after a click on a genre button, callback calls with correct argumets', () => {
-    render(<RenderGenreItem genres={genres}/>);
+    render(<RenderGenreList genres={genres}/>);
     const btnElement = screen.getByText('All');
     fireEvent.click(btnElement);
     expect(filter).toHaveBeenCalledWith('All');

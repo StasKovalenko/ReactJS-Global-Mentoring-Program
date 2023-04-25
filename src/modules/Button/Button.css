@@ -1,0 +1,46 @@
+.btn {
+  margin: 0 1rem;
+  text-transform: uppercase;
+  border-radius: 4px;
+  width: 180px;
+  height: 57px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24.38px;
+}
+
+.primary_btn {
+  color: #fff;
+  border: none;
+  background: #F65261;
+}
+
+.secondary_btn{
+  color: #F65261;
+  border: 1.5px solid #F65261;
+  background: #232323;
+}
+
+.btn:hover {
+  opacity: .9;
+}
+
+.btn:active {
+  opacity: .7;
+}
+
+.size_big {
+  margin: 0 2rem;
+  padding: .7rem;
+  text-transform: uppercase;
+  padding: 3rem 2rem;
+  border-radius: 11px;
+}
+
+.size_small {
+  margin: 0 1rem;
+  padding: .7rem;
+  text-transform: uppercase;
+  padding: 1rem 1rem;
+  border-radius: 11px;
+}
