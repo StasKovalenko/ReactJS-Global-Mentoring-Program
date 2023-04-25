@@ -26,6 +26,7 @@
 
 .genreListItem_Button:hover {
   opacity: 0.4;
+  cursor: pointer;
 }
 
 .active {

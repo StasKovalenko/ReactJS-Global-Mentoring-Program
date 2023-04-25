@@ -16,12 +16,20 @@ const MovieEditAndDelete = (props) => {
     setIsDropDownActive(false);
   }
 
+  const handleEditBtn = () => {
+    props.toggleAddAndEditDialog()
+  }
+
+  const handleDeleteBtn = () => {
+    props.toggleDeleteDialog()
+  }
+
   const renderDropDown = () => {
     return (
       <div className="dropDownMenu">
         <button type="button" className="dropDownBtnClose" onClick={() => setIsDropDownActive(false)}>x</button>
-        <button type="button" className="dropDownBtnEdit">Edit</button>
-        <button type="button" className="dropDownBtnDelete">Delete</button>
+        <button type="button" className="dropDownBtnEdit" onClick={handleEditBtn}>Edit</button>
+        <button type="button" className="dropDownBtnDelete" onClick={handleDeleteBtn}>Delete</button>
       </div>
     )
   }

@@ -1,12 +1,17 @@
 import React, { useState} from "react";
 import MovieEditAndDelete from "../MovieEditAndDelete/MovieEditAndDelete";
+import Dialog from "../Dialog/Dialog";
+import { Portal } from "react-portal";
 import  { convertGenres, convertDate } from "../../utils/helpers";
+import MovieForm from "../MovieForm/MovieForm";
 
 import './MovieTile.css';
 
 const MovieTile = (props) => {
   const [isImgLoaded, setIsImgLoaded] = useState(true);
   const [toShowEditBtn, setToShowEditBtn] = useState(false);
+  const [isOpenEditAndAddDialog, setIsOpenEditAndAddDialog] = useState(false);
+  const [isOpenDeleteDialog, setIsOpenDeleteDialog] = useState(false);
 
   const { movie, handleOnClick } = props;
 
@@ -22,10 +27,17 @@ const MovieTile = (props) => {
     setToShowEditBtn(false);
   }
 
-  const handleClick = () => {
-    handleOnClick(movie)
+  const handleClick = (e) => {
+    handleOnClick(movie, e)
   }
 
+  const toggleAddAndEditDialog = () => {
+    setIsOpenEditAndAddDialog(!isOpenEditAndAddDialog)
+  }
+
+  const toggleDeleteDialog = () => {
+    setIsOpenDeleteDialog(!isOpenDeleteDialog)
+  }
 
   return (
     <li 
@@ -36,7 +48,25 @@ const MovieTile = (props) => {
       onMouseEnter={handleOnFocus}
       onMouseLeave={handleOutFocus}
     >
-      <MovieEditAndDelete toShowEditBtn={toShowEditBtn}/>
+      <MovieEditAndDelete 
+        toggleDeleteDialog={toggleDeleteDialog}
+        toShowEditBtn={toShowEditBtn}
+        toggleAddAndEditDialog={toggleAddAndEditDialog} 
+      />
+      <Portal node={document && document.getElementById('dialog-root')}>
+        {isOpenEditAndAddDialog && (
+          <Dialog onClose={toggleAddAndEditDialog} title={"Edit movie"}>
+            <MovieForm modalMovieType={"edit"} movie={movie} />
+          </Dialog>
+          )
+        }
+        {isOpenDeleteDialog && (
+          <Dialog onClose={toggleDeleteDialog} title={"Delete movie"}>
+            <MovieForm movie={movie} isOpenDeleteDialog={isOpenDeleteDialog}/>
+          </Dialog>
+          )
+        }
+      </Portal>
       <div className="movieLogo">
         <img className="movieLogo_img" src={movie?.poster_path} alt="Movie img" onError={handleOnError}/>
       </div>

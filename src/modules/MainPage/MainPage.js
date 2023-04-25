@@ -5,6 +5,7 @@ import GenreSelect from '../GenreSelect/GenreSelect';
 
 import './MainPage.css'
 import SortControl from "../SortControl/SortControl";
+import Header from "../Header/Header";
 
 const MainPage = () => {
   return (
@@ -12,6 +13,7 @@ const MainPage = () => {
       <div className="wrapper">
         <div className="header">
           <div className="headerBackground"></div>
+          <Header />
           <SearchForm />
         </div>
         <div className="main">

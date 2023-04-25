@@ -11,6 +11,7 @@ const Button = (props) => {
     dataCy,
     item,
     index,
+    className,
   } = props;
 
   const checkBtnStyle = btnstyle ? 'secondary_btn' : 'primary_btn';
@@ -19,7 +20,7 @@ const Button = (props) => {
   return (
     <>
       <button
-        className={`btn ${checkBtnStyle} `}
+        className={`btn ${checkBtnStyle || className} `}
         onClick={onClick}
         type={type}
         data-testid={checkBtnTestId}

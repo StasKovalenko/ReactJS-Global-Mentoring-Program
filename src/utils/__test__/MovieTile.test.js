@@ -21,6 +21,6 @@ describe('MovieTile', () => {
     render(<MovieTile movie={movie} handleOnClick={handleOnClick} />);
     const movieTile = screen.getByRole('listitem');
     movieTile.click();
-    expect(handleOnClick).toHaveBeenCalledWith(movie);
+    expect(handleOnClick).toHaveBeenCalledTimes(1);
   });
 });

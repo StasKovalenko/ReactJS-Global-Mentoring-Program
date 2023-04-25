@@ -10,16 +10,24 @@ const MovieTilesList = () => {
   const [isMovieDetailShowed, setIsMovieDetailShowed] = useState(null);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
-  const maxMovies =35;
+  const maxMovies = data.slice(0, 35);
 
-  const handleOnClick = (movie) => {
+  const handleOnClick = (movie, e) => {
     setSelectedMovie(movie)
-    setIsMovieDetailShowed(true)
+    if (e.target.localName === "img") {
+      setIsMovieDetailShowed(true)
+    }
+  }
+  
+  const handleClickOnList = (e) => {
+    if (e.target.className !== "movieLogo_img") {
+      setIsMovieDetailShowed(false)
+    }
   }
 
   const renderMovieItems = () => {
     return (
-      data.map((movie, index) => {
+      maxMovies.map((movie, index) => {
         return (
           <MovieTile
             key={index}
@@ -27,14 +35,14 @@ const MovieTilesList = () => {
             movie={movie}
           />
         )
-      }).slice(0, maxMovies)
+      })
     )
   }
 
   return (
     <ErrorBoundary>
       {isMovieDetailShowed ? <MovieDetails movie={selectedMovie}/> : null}
-      <ul className="moviesContainer">
+      <ul className="moviesContainer" onClick={handleClickOnList}>
         {renderMovieItems()}
       </ul>
     </ErrorBoundary>

@@ -17,7 +17,7 @@
   position: relative;
 }
 
-.sortByOptions {
+.sortByOptionsDropDown {
   display: flex;
   flex-direction: column;
   position: relative;
@@ -42,8 +42,13 @@
   border-radius: 4px;
 }
 
+.sortByBtn:hover {
+  cursor: pointer;
+}
+
 .sortBydropDownBtn:hover {
   background-color: #F65261;
+  cursor: pointer;
 }
 
 .sortByFillBtnDown, .sortByFillBtnUp {
