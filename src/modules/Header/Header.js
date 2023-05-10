@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "../Button/Button";
 import Dialog from "../Dialog/Dialog";
 import { Portal } from "react-portal";
@@ -6,11 +6,11 @@ import MovieForm from "../MovieForm/MovieForm";
 
 import "./Header.css";
 
-const Header = () => {
-  const [isOpenDialog, setIsOpenDialog] = useState(false);
+const Header = (props) => {
+  const { isOpenDialogAddMovie, setIsOpenDialogAddMovie } = props;
 
   const toggleDialog = () => {
-    setIsOpenDialog(!isOpenDialog)
+    setIsOpenDialogAddMovie(!isOpenDialogAddMovie)
   }
 
   const handleOpenDialog = () => {
@@ -32,7 +32,7 @@ const Header = () => {
         data-cy={"addMovieBtnCy"}
       />
       <Portal node={document && document.getElementById('dialog-root')}>
-        {isOpenDialog&& (
+        {isOpenDialogAddMovie&& (
           <Dialog onClose={toggleDialog} title={"add movie"}>
             <MovieForm modalMovieType={"add"}/>
           </Dialog>

@@ -1,31 +1,22 @@
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, screen } from "@testing-library/react";
 import SortControl from "../../modules/SortControl/SortControl";
 
 describe("SortControl", () => {
   it("'sort by' is rendered", () => {
-    const { getByText } = render(<SortControl />);
-    expect(getByText("sort by")).toBeInTheDocument();
+    render(<SortControl />);
+    expect(screen.getByText("sort by")).toBeInTheDocument();
   });
 
-  it("render a button to dropdown", () => {
-    const { getByRole } = render(<SortControl />);
-    const button = getByRole("button", { name: "" });
-    expect(button).toBeInTheDocument();
-    fireEvent.click(button);
-    expect(button).toHaveClass("sortByFillBtnDown");
-  });
-
-  it("rendered a default sort by value of 'Release Date'", () => {
-    const { getByText } = render(<SortControl />);
-    const button = getByText("Release Date");
-    expect(button).toHaveTextContent("Release Date");
-  });
-
-  it("dropdown is rendered with 'title' button", () => {
-    const { getByText } = render(<SortControl />);
-    const buttonRelease = getByText("Release Date");
-    fireEvent.click(buttonRelease);
-    expect(getByText("Title")).toBeInTheDocument();
+  it("test dropdown", () => {
+    render(<SortControl />);
+    const releaseBtnEl = screen.getByTestId("sortByBtn");
+    const fillEl = screen.getByTestId("fill")
+    expect(releaseBtnEl).toBeInTheDocument();
+    expect(fillEl).toBeInTheDocument();
+    fireEvent.click(releaseBtnEl);
+    expect(screen.getByTestId("title")).toBeInTheDocument();
+    expect(screen.getByTestId("release")).toBeInTheDocument();
+    expect(fillEl).toHaveClass("sortByFillBtnUp");
   });
 });

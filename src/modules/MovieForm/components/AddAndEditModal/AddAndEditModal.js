@@ -81,7 +81,7 @@ const AddAndEditModal = (props) => {
             type="number" 
             pattern="[0-9]*" 
             id="rating" 
-            defaultValue={!isAddMovieShowed ? "0" : movie.vote_average}
+            defaultValue={!isAddMovieShowed ? "7.1" : movie.vote_average}
           />
         </div>
 

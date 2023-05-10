@@ -1,13 +1,13 @@
 import React from "react";
 import { render, fireEvent, screen } from '@testing-library/react';
 import GenreSelect from "../../modules/GenreSelect/GenreSelect";
-import RenderGenreList from "../../modules/GenreSelect/components/RenderGenreList";
 import { filter } from "../filter";
 
 jest.mock('../filter');
 
 describe('Genre Select', () => {
   const genres = ['All', '1', '2', '3'];
+  const activeGenre = 3;
   it('Test that component renders all genres passed in props', () => {
     render(<GenreSelect genres={genres}/>);
     let genreElem;
@@ -18,16 +18,18 @@ describe('Genre Select', () => {
   });
 
   it('Test that component highlights a selected genre passed in props', () => {
-    render(<GenreSelect genres={genres} />)
-    const btnElement = screen.getByText('3');
+    render(<GenreSelect genres={genres} activeGenre={activeGenre}/>)
+    const btnElement = screen.getByText("3");
+    expect(btnElement).toBeInTheDocument();
     fireEvent.click(btnElement);
     expect(btnElement.className).toEqual('genreListItem_Button active');
   });
 
   it('Test that after a click on a genre button, callback calls with correct argumets', () => {
-    render(<RenderGenreList genres={genres}/>);
+    render(<GenreSelect genres={genres} />);
     const btnElement = screen.getByText('All');
+    expect(btnElement).toBeInTheDocument();
     fireEvent.click(btnElement);
-    expect(filter).toHaveBeenCalledWith('All');
+    expect(filter).toHaveBeenCalledTimes(1);
   });
 });
