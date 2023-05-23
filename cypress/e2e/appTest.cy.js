@@ -21,7 +21,7 @@ describe('Test my SPA', () => {
     expect(movieTitles).to.deep.equal(movieTitles.sort());
     });
     cy.get('.sortByValue').click();
-    cy.get('[value="release_date"]').should('be.visible').click();
+    cy.get('[value="release date"]').should('be.visible').click();
     cy.get('.movieTile').then((movieTiles) => {
       const releaseDates = movieTiles.map((movieTile) => {
         const releaseDate = Cypress.$(movieTile).find('[data-testid="release_date"]').text();
@@ -59,4 +59,41 @@ describe('Test my SPA', () => {
     cy.get('.search_input').clear();
     cy.get('.movieTile').should('contain', 'Fifty Shades Freed')
   })
+
+
+  it('cover Url has an adress from input before and after reloading', () => {
+    cy.get('.search_input').type('The Matrix');
+    cy.url().should('include', 'search=The+Matrix');
+    cy.reload(true)
+    cy.url().should('include', 'search=The+Matrix');
+    cy.get('.search_input').clear().type('The Lord');
+    cy.url().should('include', 'search=The+Lord');
+    cy.reload(true)
+    cy.url().should('include', 'search=The+Lord');
+    
+  });
+
+  it('cover url has an adress from activeGenre', () => {
+    cy.get('[data-testid="Horror"]').click().should('have.class', 'active');
+    cy.url().should('include', 'filter=Horror')
+    cy.reload();
+    cy.url().should('include', 'filter=Horror')
+  });
+
+  it('cover url has an adress from sortBy', () => {
+    cy.get('[data-testid="sortByBtn"]').click();
+    cy.get('[data-testid="title"]').click();
+    cy.url().should('include', 'sortBy=title')
+    cy.reload();
+    cy.url().should('include', 'sortBy=title')
+  });
+
+  it('cover url has an adress from selectedMovie', () => {
+    cy.get('.movieTile').should('be.visible');
+    cy.get('.movieTile').first().click();
+    cy.get('.movieDetailsContainer').should('be.visible');
+    cy.url().should('include', '/movie/337167');
+    cy.reload();
+    cy.url().should('include', '/movie/337167');
+  });
 })
