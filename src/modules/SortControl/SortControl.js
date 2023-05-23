@@ -3,29 +3,31 @@ import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 
 import "./SortControl.css"
 
-const SortControl = (props) => {
+const SortControl = (props) => {``
   const [isDropDownShowed, setIsDropDownShowed] = useState(false);
-
-  const { sortCriterion, setSortCriterion } = props;
-
+  const [sortCriterion, setSortCriteriuon] = useState(localStorage.getItem('sort') || 'realese date')
+  const { setSearchParams } = props;
   const handleSortByClick = (e) => {
-    setSortCriterion(e.target.value);
+    e.preventDefault()
+    setSearchParams(`sortBy=${e.target.value === 'release date' ? 'release_date' : 'title'}&sortOrder=asc`);
+    localStorage.setItem('sort', e.target.value)
+    setSortCriteriuon(e.target.value)
   }
-
+  
   const renderSortByDropDown = () => {
     return (
       <div className="sortByValue" onClick={() => setIsDropDownShowed(!isDropDownShowed)}>
         {!isDropDownShowed&&
           <div className="sortByOptions">
-            <button type="button" data-testid="sortByBtn" className="sortByBtn">{sortCriterion ? sortCriterion : 'Release date'}</button>
+            <button type="button" data-testid="sortByBtn" className="sortByBtn">{sortCriterion}</button>
           </div>
         }
         {isDropDownShowed &&
           <div className="sortByOptionsDropDown">
             <button type="button" 
               className="sortBydropDownBtn" 
-              value="release_date"
               data-testid="release"
+              value="release date"
               onClick={handleSortByClick}>
                 Release Date
             </button>

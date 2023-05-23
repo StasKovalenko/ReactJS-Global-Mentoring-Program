@@ -45,18 +45,19 @@
   text-align: left;
   padding: 10px;
   cursor: pointer;
+  width: 100%;
 }
 
 .dropDownBtnEdit:hover, .dropDownBtnDelete:hover {
   background-color: #F65261;
 }
 
-.dropDownBtnClose {
-  width: 0.7rem;
-  position: relative;
-  right: -8.5rem;
-  top: -7px;
+.dropDownMenu .dropDownBtnClose {
+  font-size: 18px;
+  text-align: right;
   cursor: pointer;
+  background: none;
+  padding-top: 0;
   z-index: 10;
 }
 

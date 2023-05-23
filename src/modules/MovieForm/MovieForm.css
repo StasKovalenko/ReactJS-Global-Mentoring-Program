@@ -9,6 +9,13 @@
   border-radius: 5px;
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.1), 0px 2px 10px rgba(0, 0, 0, 0.07), 0px 10px 20px rgba(0, 0, 0, 0.05), 0px 10px 50px rgba(0, 0, 0, 0.05);
 }
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
 
 .dialogCloseBtn {
   position: absolute;
@@ -41,9 +48,10 @@
   grid-column-gap: 2rem;
 }
 
-.titleWrap, .dateWrap, .emailWrap, .ratingeWrap, .runtimeWrap, .textareaWrap, .genresWrap {
+.titleWrap, .dateWrap, .urlWrap, .ratingeWrap, .runtimeWrap, .textareaWrap, .genresWrap {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .deleteModalWrap{
@@ -73,6 +81,7 @@
   background-color: rgba(50, 50, 50, 0.948044);
   border: none;
   padding: 1rem;
+  position: relative;
 }
 
 .genresWrap {
@@ -82,6 +91,13 @@
 .genresDropDown {
   margin: 1rem 0;
   background-color: rgba(50, 50, 50, 0.948044);
+  border: none;
+  height: 2rem;
+  color: #fff;
+}
+
+.genresDropDown:hover {
+  border: none;
 }
 .rmsc .dropdown-container {
   background-color: inherit;
@@ -92,6 +108,7 @@
   color: #fff;
   --rmsc-selected: none;
   --rmsc-hover: #F65261;
+  
 }
 
 .dropdown-container .dropdown-content {
@@ -104,6 +121,12 @@
   width: 100%;
   display: flex;
   align-items: center;
+}
+.error {
+  animation: shake 1s linear infinite;
+  color: red;
+  position: relative;
+  bottom: .9rem;
 }
 
 .textareaWrap {
@@ -133,7 +156,7 @@
 }
 
 
-#ovirview{
+#overview{
   margin: 1rem 0;
   padding: 1rem;
   font-size: 20px;
@@ -171,4 +194,65 @@
   display: flex;
   justify-content: flex-end;
   margin: 3rem 2rem 1rem 0;
+}
+
+.dialog-content {
+  z-index: 111;
+  max-width: 90%;
+  min-height: 300px;
+  min-width: 400px;
+}
+
+.modalSuccessWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+}
+
+.modalSuccessIcon {
+  width: 66px;
+  height: 66px;
+  position: relative;
+  background: #F65261;
+  border-radius: 50%;
+  margin: -2.5rem 0 31px;
+}
+
+.modalSuccessIcon::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  background: #fff;
+  z-index: 2;
+  border: 2px solid #fff;
+  top: 33px;
+  transform: rotate(133deg);
+  left: 20px;
+}
+.modalSuccessIcon::before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  background: #fff;
+  z-index: 2;
+  border: 2px solid #fff;
+  top: 39px;
+  transform: rotate(50deg);
+  left: 15px;
+}
+
+.modalSuccessTitle {
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 40px;
+  line-height: 49px;
+}
+
+.modalSuccessDiscription {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  margin-top: 29px;
 }

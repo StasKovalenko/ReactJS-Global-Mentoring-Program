@@ -1,19 +1,30 @@
 import React from "react";
-import AddAndEditModal from "./components/AddAndEditModal/AddAndEditModal";
+import AddFormModal from "./components/AddFormModal/AddFormModal";
 import DeleteModal from "./components/DeleteModal/DeleteModal";
-import ErrorBoundary from "../ErrorBoundary/ErrorBoundary"
 
 import "./MovieForm.css";
+import EditFormModal from "./components/EditFormModal/EditFormModal";
 
 const MovieForm = (props) => {
-  const { modalMovieType, isOpenDeleteDialog } = props;
-
-  return (
-    <ErrorBoundary>
-      {!isOpenDeleteDialog && (<AddAndEditModal modalMovieType={modalMovieType} {...props}/>)}
-      {isOpenDeleteDialog && (<DeleteModal {...props}/>)}
-    </ErrorBoundary>
-  )
+  const { isOpenDeleteDialog, isAddFormSubmitted } = props;
+  
+  if (!isAddFormSubmitted) {
+    return (
+      (isOpenDeleteDialog ? <DeleteModal {...props} /> : 
+        props.modalMovieType==="edit" ? 
+          <EditFormModal {...props}/> : <AddFormModal {...props} />
+      )
+    )
+  } else {
+    return (
+      <div className="modalSuccessWrap">
+        <div className="modalSuccessIcon"></div>
+        <p className="modalSuccessTitle">congratulations!</p>
+        <p className="modalSuccessDiscription">The movie has been added to database successfully </p>
+      </div>
+    );
+  }
+  
 }
 
 export default MovieForm;

@@ -1,61 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../Button/Button";
+import { Form } from "react-router-dom";
 
-class SearchForm extends React.Component {
-  constructor(props) {
-    super(props)
-    this.initialValue = this.props.initialValue;
-    this.setSearchQuery = this.props.setSearchQuery;
-    this.state = {value: this.props.value || ''}
-  }
+const SearchForm = (props) => {
+  const [inputValue, setInputValue] = useState();
+  const { setSearchParams } = props;
+  const checkLocalStorage = localStorage.getItem('search') ? localStorage.getItem('search') : 'What do you want to watch?';
 
-  handleOnChange = (e) => {
-    this.setState({ value: e.target.value})
-    this.setSearchQuery(e.target.value);
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let timer = setTimeout(() => {
+      setSearchParams(`search=${inputValue}&searchBy=title`)
+    }, 500);
 
-  handleOnSubmit = (e) => {
-    this.setSearchQuery(e.target.value);
-  }
-
-  handleOnClick = () => {
-    this.setSearchQuery(this.state.value);
-  }
-
-  handlePressEnter = (e) => {
-    if (e.key === 'Enter') {
-      this.setSearchQuery(e.target.value);
-      e.preventDefault();
+    return () => {
+      clearTimeout(timer)
     }
   }
 
-  render () {
-    return (
-      <div className="searchForm_container">
-        <div className="form_container">
-          <form className="form">
+  const handleChange = (e) => {
+    setTimeout(() => {
+      setInputValue(e.target.value)
+      localStorage.setItem('search', e.target.value)
+      setSearchParams(`&search=${e.target.value}&searchBy=title`)
+    }, 500);
+  }
+
+  return (
+    <div className="searchForm_container">
+      <div className="form_container">
+        <Form 
+          className="form"  
+          method="get"
+          onSubmit={handleSubmit}
+          onChange={handleChange}>
             <label className="form_title" htmlFor="search_input">Find your movie</label><br/>
             <input
               id="search_input"
               type= "text"
-              value={this.state.value}
-              placeholder={'What do you want to watch?'}
+              name="search"
+              defaultValue={localStorage.getItem('search')}
+              placeholder={checkLocalStorage}
               className="search_input"
               data-testid="search_input"
-              onChange={this.handleOnChange}
-              onFocus={this.handleOnSubmit}
-              onKeyDown={this.handlePressEnter}
             />
-            <Button 
-              type={'button'}
-              onClick={this.handleOnClick}
-              btntext={'Search'}
-            />
-          </form>
-        </div>
+          <Button
+            type={'submit'}
+            btntext={'Search'}
+          />
+        </ Form>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 export default SearchForm;

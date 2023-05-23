@@ -96,4 +96,51 @@ describe('Test my SPA', () => {
     cy.reload();
     cy.url().should('include', '/movie/337167');
   });
+  it("check add course functionality", () => {
+    cy.get('[data-cy="addMovieBtnCy"]').click()
+    cy.url().should('include', 'new')
+    cy.get('.modalMovieContainer').should('be.visible')
+    cy.get('.modalMovieContainer').within(() => {
+      cy.get("#title").type("Movie Title");
+      cy.get("#releaseDate").type("2023-05-22");
+      cy.get("#email").type("https://image.tmdb.org/t/p/w500/3kcEGnYBHDeqmdYf8ZRbKdfmlUy.jpg");
+      cy.get("#rating").type("8.5");
+      cy.get("#runtime").type("120");
+      cy.get("#overview").type("This is a movie overview");
+      cy.get('.genresDropDown').click()
+      cy.get('.options').click()
+      cy.get('[data-testid="submit"]').click();
+    })
+    cy.get(".modalSuccessWrap").should('be.visible')
+
+    cy.get(".dialogCloseBtn").click()
+
+    cy.get('.search_input').type('Movie Title')
+    cy.contains('Movie Title')
+    cy.get('.search_input').clear()
+
+    cy.get('[data-cy="addMovieBtnCy"]').click()
+    cy.get('[data-testid="submit"]').click();
+    cy.contains('Title is required')
+    cy.contains('URL is required')
+    cy.contains('ReleaseDate is required')
+  })
+
+  it("check edit course functionality", () => {
+    cy.get('.movieTile')
+      .eq(0)
+      .within((e) => {
+        e.trigger("mouseover")
+        cy.get('.editAndDelete').click({force:true})
+        cy.get('.dropDownBtnEdit').click()
+      })
+    cy.get('.dialog-content').should('be.visible')
+    cy.url().should('include', 'edit')
+    cy.get('.dialog-title').should('be.visible');
+    cy.get('#title').should('be.visible');
+    cy.get('#rating').should('be.visible');
+    cy.get('#email').should('be.visible');
+    cy.get('[data-testid=submit]').click()
+    cy.get('.dialog-content').should('not.exist')
+  })
 })

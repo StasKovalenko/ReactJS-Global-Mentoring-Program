@@ -1,42 +1,44 @@
-import React, {useState} from "react";
-import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
+import React, { useState } from "react";
 import Button from "../Button/Button";
 
-const genresList = ['all', 'Documentary', 'Comedy', 'Horror', 'Crime']
+const genresList = ['All', 'Documentary', 'Comedy', 'Horror', 'Crime'];
 
 import './GenreSelect.css';
 
 const GenreSelect = (props) => {
-  const [selectedGenreIndex, setSeletedGenreIndex] = useState(0);
-  const { genres, setActiveGenre } = props;
-
-  const checkedGenresList = genres ? genres : genresList;
+  const { setSearchParams } = props;
+  const [activeGenre, setActiveGenre] = useState(localStorage.getItem('genre') || 'All');
 
   const handleTabClick = (e) => {
-    setSeletedGenreIndex((+e.target.dataset.index));
+    if (e.target.value === 'All') {
+      setActiveGenre(e.target.value);
+      localStorage.setItem('genre', e.target.value);
+      return setSearchParams('')
+    }
+    setSearchParams(`filter=${e.target.value}`);
+    localStorage.setItem('genre', e.target.value);
     setActiveGenre(e.target.value);
-  }
+  };
 
   return (
-    <ErrorBoundary>
+    <div className="filterBy">
       <ul className="genreList">
-        {checkedGenresList.map((item, index) => {
+        {genresList.map((item) => {
           return (
             <li className="genreListItem" key={item}>
               <Button
                 type="button"
-                className={`genreListItem_Button ${index === selectedGenreIndex ? 'active' : '' }`}
+                className={`genreListItem_Button ${item === activeGenre ? 'active' : '' }`}
                 onClick={handleTabClick}
                 btntext={item}
                 value={item}
-                index={index}
-                item={item}
+                data-testid={item}
               />
           </li>
           )
         })}
       </ul>
-    </ErrorBoundary>
+    </div>
   )
 }
 
