@@ -2,6 +2,8 @@
   flex-direction: column;
   margin: 0 0 2rem;
   position: relative;
+  text-decoration: none;
+  color: #fff;
 }
 
 .movieTile:hover {

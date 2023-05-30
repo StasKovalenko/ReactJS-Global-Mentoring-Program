@@ -4,16 +4,17 @@ import Dialog from "../Dialog/Dialog";
 import { Portal } from "react-portal";
 import  { convertGenres, convertDate } from "../../utils/helpers";
 import MovieForm from "../MovieForm/MovieForm";
+import { Link } from "react-router-dom";
 
 import './MovieTile.css';
 
 const MovieTile = (props) => {
   const [isImgLoaded, setIsImgLoaded] = useState(true);
   const [toShowEditBtn, setToShowEditBtn] = useState(false);
-  const [isOpenEditAndAddDialog, setIsOpenEditAndAddDialog] = useState(false);
+  const [isOpenEditDialog, setIsOpenEditDialog] = useState(false);
   const [isOpenDeleteDialog, setIsOpenDeleteDialog] = useState(false);
 
-  const { movie, handleOnClick } = props;
+  const { movie } = props;
 
   const handleOnError = () => {
     setIsImgLoaded(false);
@@ -27,12 +28,8 @@ const MovieTile = (props) => {
     setToShowEditBtn(false);
   }
 
-  const handleClick = (e) => {
-    handleOnClick(movie, e)
-  }
-
   const toggleAddAndEditDialog = () => {
-    setIsOpenEditAndAddDialog(!isOpenEditAndAddDialog)
+    setIsOpenEditDialog(!isOpenEditDialog)
   }
 
   const toggleDeleteDialog = () => {
@@ -40,46 +37,60 @@ const MovieTile = (props) => {
   }
 
   return (
-    <li 
+    <>
+      { isImgLoaded && <div  
       className="movieTile"
       id="movieTile"
-      style={{display: isImgLoaded? "flex" : "none"}}
-      onClick={handleClick} 
       onMouseEnter={handleOnFocus}
       onMouseLeave={handleOutFocus}
+      datatestid={movie.id}
     >
-      <MovieEditAndDelete 
-        toggleDeleteDialog={toggleDeleteDialog}
-        toShowEditBtn={toShowEditBtn}
-        toggleAddAndEditDialog={toggleAddAndEditDialog} 
-      />
-      <Portal node={document && document.getElementById('dialog-root')}>
-        {isOpenEditAndAddDialog && (
-          <Dialog onClose={toggleAddAndEditDialog} title={"Edit movie"}>
-            <MovieForm modalMovieType={"edit"} movie={movie} />
-          </Dialog>
-          )
-        }
-        {isOpenDeleteDialog && (
-          <Dialog onClose={toggleDeleteDialog} title={"Delete movie"}>
-            <MovieForm movie={movie} isOpenDeleteDialog={isOpenDeleteDialog}/>
-          </Dialog>
-          )
-        }
-      </Portal>
-      <div className="movieLogo">
-        <img className="movieLogo_img" src={movie?.poster_path} alt="Movie img" onError={handleOnError}/>
-      </div>
-      <div className="movieDetails">
-        <div className="movieDetailsInfo">
-          <h2 className="movieTitle">{movie?.title}</h2>
-          <div className="movieReleaseDate">{convertDate(movie?.release_date)}</div>
+        <MovieEditAndDelete
+          movie={movie}
+          toggleDeleteDialog={toggleDeleteDialog}
+          toShowEditBtn={toShowEditBtn}
+          toggleAddAndEditDialog={toggleAddAndEditDialog} 
+        />
+        <Portal node={document && document.getElementById('dialog-root')}>
+          {isOpenEditDialog && (
+              <Dialog onClose={toggleAddAndEditDialog} title="Edit movie">
+                <MovieForm
+                  modalMovieType={"edit"}
+                  movie={movie}
+                  setIsOpenEditDialog={setIsOpenEditDialog}
+                />
+              </Dialog>
+            )
+          }
+          {isOpenDeleteDialog && (
+            <Dialog onClose={toggleDeleteDialog} title={"Delete movie"}>
+              <MovieForm movie={movie} isOpenDeleteDialog={isOpenDeleteDialog}/>
+            </Dialog>
+            )
+          }
+        </Portal>
+        <Link to={`/movie/${movie.id}`}>
+          <div className="movieLogo">
+            <img 
+              className="movieLogo_img"
+              src={movie?.poster_path}
+              alt="Movie img"
+              onError={handleOnError}
+            />
+            </div>
+        </Link>
+        <div className="movieDetails">
+          <div className="movieDetailsInfo">
+            <h2 className="movieTitle">{movie?.title}</h2>
+            <div className="movieReleaseDate">{convertDate(movie?.release_date)}</div>
+          </div>
+          <div className="movieGenres">
+            <div className="movieGenresList">{convertGenres(movie?.genres)}</div>
+          </div>
         </div>
-        <div className="movieGenres">
-          <div className="movieGenresList">{convertGenres(movie?.genres)}</div>
-        </div>
-      </div>
-    </li>
+
+    </div>}
+    </>
   )
 }
 

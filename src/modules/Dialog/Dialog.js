@@ -3,22 +3,21 @@ import PropTypes from "prop-types";
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary"
 
 import './Dialog.css'
+import { Link } from "react-router-dom";
 
 const Dialog = ({ children, title, onClose }) => {
   return (
     <ErrorBoundary>
-      <div className="dialog-overlay" onClick={onClose}>
+      <Link to={'/'}><div className="dialog-overlay" onClick={onClose}></div></Link>
       <div 
-        className={`dialog-content ${title === "Delete movie" ? "deleteDialogContent" : null}`} 
-        onClick={(e) => e.stopPropagation()}
-      >
-        <button onClick={onClose} className="dialogCloseBtn">x</button>
-        <h2 className="dialog-title">{title}</h2>
-        {children}
-      </div>
-    </div>
+          className={`dialog-content ${title === "Delete movie" ? "deleteDialogContent" : null}`} 
+          onClick={(e) => e.stopPropagation()}
+        >
+          <Link to={'/'}><button onClick={onClose} className="dialogCloseBtn">x</button></Link>
+          <h2 className="dialog-title">{title}</h2>
+          {children}
+        </div>
     </ErrorBoundary>
-    
   );
 };
 
