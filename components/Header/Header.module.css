@@ -1,0 +1,48 @@
+.headerContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.headerBackground {
+  background-image: url("/images/intro-import.jpg");
+  background-size: cover;
+  position: relative;
+  width: 100%;
+  height: 500px;
+  z-index: 1;
+  filter: blur(3px);
+}
+
+.headerLogo {
+  margin: 2rem 4rem;
+  background-image: url("/images/Netflix_2015_logo.svg.png");
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-size: contain;
+  width: 151px;
+  height: 24px;
+}
+
+.addMovieBtn {
+  background-color:rgba(96, 96, 96, 0.68);
+  text-transform: uppercase;
+  color: #F65261;
+  font-size: 20px;
+  line-height: 24px;
+  border: none;
+  font-weight: 600;
+  width: 177px;
+  height: 46px;
+  margin: 0 4rem;
+}
+
+.addMovieBtn:hover {
+  opacity: .7;
+  cursor: pointer;
+}
