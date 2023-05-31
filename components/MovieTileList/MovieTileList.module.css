@@ -1,0 +1,6 @@
+.moviesContainer {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 3rem 0;
+}
