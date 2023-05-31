@@ -10,7 +10,7 @@
 }
 
 .headerBackground {
-  background-image: url('/images/intro-import.jpg');
+  background-image: url("/images/intro-import.jpg");
   background-size: cover;
   position: relative;
   width: 100%;
@@ -21,7 +21,7 @@
 
 .headerLogo {
   margin: 2rem 4rem;
-  background-image: url('/images/Netflix_2015_logo.svg.png');
+  background-image: url("/images/Netflix_2015_logo.svg.png");
   background-repeat: no-repeat;
   background-position-x: center;
   background-size: contain;
